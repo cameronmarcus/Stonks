@@ -2,7 +2,6 @@ import http.client
 import json
 import pandas as pd
 
-
 def api_call(stock, df):
     conn = http.client.HTTPSConnection("macrotrends-finance.p.rapidapi.com")
 
@@ -39,7 +38,6 @@ def api_call(stock, df):
 
     return df
 
-
 def main():
     stocks = ["PANW", "CRWD", "CSCO"]
     df = pd.DataFrame()
@@ -47,6 +45,5 @@ def main():
         df = api_call(stock, df)
 
     df.to_csv("stocks.csv", index=False)
-
 
 main()
