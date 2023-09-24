@@ -6,7 +6,7 @@ def api_call(stock, df):
     conn = http.client.HTTPSConnection("macrotrends-finance.p.rapidapi.com")
 
     headers = {
-        "X-RapidAPI-Key": "**************************************",
+        "X-RapidAPI-Key": "**********************************",
         "X-RapidAPI-Host": "macrotrends-finance.p.rapidapi.com",
     }
 
@@ -39,10 +39,20 @@ def api_call(stock, df):
     return df
 
 def main():
-    stocks = ["PANW", "CRWD", "CSCO"]
+    stocks = ["PANW", "CRWD", "CSCO", "ESTC", "PLTR"]
     df = pd.DataFrame()
     for stock in stocks:
         df = api_call(stock, df)
+
+    df = df[["Open", "High", "Low", "Close", "Adj Close",
+             "Volume", "Revenue", "Cost-Of-Goods-Sold", "Gross-Profit",
+             "Research-And-Development-Expenses", "SG&A-Expenses",
+             "Other-Operating-Income-Or-Expenses", "Operating-Expenses", "Operating-Income",
+             "Total-Non-Operating-Income/Expense", "Pre-Tax-Income", "Income-Taxes", "Income-After-Taxes",
+             "Other-Income", "Income-From-Continuous-Operations", "Income-From-Discontinued-Operations",
+             "Net-Income", "EBITDA", "EBIT", "Basic-Shares-Outstanding", "Shares-Outstanding", "Basic-EPS",
+             "EPS---Earnings-Per-Share" ]]
+
 
     df.to_csv("stocks.csv", index=False)
 
