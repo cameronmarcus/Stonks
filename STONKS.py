@@ -1,12 +1,13 @@
 import http.client
 import json
+import time
 import pandas as pd
-
+import schedule
 def api_call(stock, df):
     conn = http.client.HTTPSConnection("macrotrends-finance.p.rapidapi.com")
 
     headers = {
-        "X-RapidAPI-Key": "*********************************",
+        "X-RapidAPI-Key": "52d708265fmsh39a3b5ed799ed17p13c6e7jsn474bd35e85dc",
         "X-RapidAPI-Host": "macrotrends-finance.p.rapidapi.com",
     }
 
@@ -37,7 +38,6 @@ def api_call(stock, df):
         df = pd.concat([df, stock_df], ignore_index=True)
 
     return df
-
 def update():
     print("Updating Stock Data...")
     stocks = ["ESTC", "PANW", "CRWD", "CSCO", "AAPL"]
@@ -52,14 +52,12 @@ def update():
              "Total-Non-Operating-Income/Expense", "Pre-Tax-Income", "Income-Taxes", "Income-After-Taxes",
              "Other-Income", "Income-From-Continuous-Operations", "Income-From-Discontinued-Operations",
              "Net-Income", "EBITDA", "EBIT", "Basic-Shares-Outstanding", "Shares-Outstanding", "Basic-EPS",
-             "EPS---Earnings-Per-Share" ]]
-
+             "EPS---Earnings-Per-Share"]]
 
     df.to_csv("stocks.csv", index=False)
 
-
 schedule.every(1).minutes.do(update)
+update()
 while True:
-    update()
     schedule.run_pending()
     time.sleep(1)
