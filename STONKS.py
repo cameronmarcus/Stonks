@@ -7,7 +7,7 @@ def api_call(stock, df):
     conn = http.client.HTTPSConnection("macrotrends-finance.p.rapidapi.com")
 
     headers = {
-        "X-RapidAPI-Key": "52d708265fmsh39a3b5ed799ed17p13c6e7jsn474bd35e85dc",
+        "X-RapidAPI-Key": "ENTER KEY HERE",
         "X-RapidAPI-Host": "macrotrends-finance.p.rapidapi.com",
     }
 
